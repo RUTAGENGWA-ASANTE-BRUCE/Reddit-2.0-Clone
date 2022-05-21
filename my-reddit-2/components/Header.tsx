@@ -36,11 +36,12 @@ function Header() {
         <MenuIcon className="icon" />
       </div>
       {/* Sign in/sign out icon */}
-      <div>
+      <div className="hidden lg:flex items-center space-x-2 border border-gray-100 p-2 ">
 
-        <div className="relative h-5 w-5 flex-shrink-0">
-          <Image src="/redditHead.png" alt="" layout="fill" />
+        <div className="relative h-7 w-7 flex-shrink-0">
+          <Image src="/redditHead.png" objectFit="contain" alt="" layout="fill" />
         </div>
+        <p className="text-gray-400">Sign In</p>
       </div>
     </div>
   )
