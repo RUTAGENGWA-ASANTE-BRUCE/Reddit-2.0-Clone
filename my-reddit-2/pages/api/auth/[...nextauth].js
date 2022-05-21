@@ -1,11 +1,11 @@
 import NextAuth from "next-auth"
-import SlackProvider from "next-auth/providers/slack";
+import RedditProvider from "next-auth/providers/reddit";
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
-    SlackProvider({
-      clientId: process.env.SLACK_ID,
-      clientSecret: process.env.SLACK_CLIENT_SECRET,
+    RedditProvider({
+      clientId: process.env.REDDIT_CLIENT_ID,
+      clientSecret: process.env.REDDIT_CLIENT_SECRET,
     }),
     // ...add more providers here
   ],

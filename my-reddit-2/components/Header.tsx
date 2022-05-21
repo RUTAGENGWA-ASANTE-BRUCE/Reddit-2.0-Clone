@@ -2,7 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 import { ChatIcon, ChevronDownIcon, ChevronUpIcon, MenuIcon, PlusIcon, SearchIcon, SpeakerphoneIcon, VideoCameraIcon } from "@heroicons/react/solid"
 import { BellIcon, GlobeIcon, HomeIcon, SparklesIcon } from "@heroicons/react/outline"
+import { signIn, signOut, useSession } from 'next-auth/react'
 function Header() {
+  const { data: session } = useSession();
   return (
     <div className="sticky flex top-0 z-50 flex-row bg-white px-4 py-2 shadow-sm">
       <div className="relative w-20 h-10 flex-shrink-0 cursor-pointer">
@@ -36,13 +38,23 @@ function Header() {
         <MenuIcon className="icon" />
       </div>
       {/* Sign in/sign out icon */}
-      <div className="hidden lg:flex items-center space-x-2 border border-gray-100 p-2 ">
-
-        <div className="relative h-7 w-7 flex-shrink-0">
-          <Image src="/redditHead.png" objectFit="contain" alt="" layout="fill" />
-        </div>
-        <p className="text-gray-400">Sign In</p>
-      </div>
+      {session ?
+        (<div onClick={() => signOut()} className="hidden lg:flex items-center space-x-2 border border-gray-100 p-2 cursor-pointer">
+          <div className="relative h-7 w-7 flex-shrink-0">
+            <Image src="/redditHead.png" objectFit="contain" alt="" layout="fill" />
+          </div>
+          <div className="text-xs">
+          <p className="truncate">{session?.user?.name}</p>
+          <p className="text-gray-400">1 Karma</p>
+          </div>
+        </div>) : (
+          <div onClick={() => signIn()} className="hidden lg:flex items-center space-x-2 border border-gray-100 p-2 cursor-pointer">
+            <div className="relative h-7 w-7 flex-shrink-0">
+              <Image src="/redditHead.png" objectFit="contain" alt="" layout="fill" />
+            </div>
+            
+            <p className="text-gray-400">Sign In</p>
+          </div>)}
     </div>
   )
 }
