@@ -43,10 +43,11 @@ function Header() {
           <div className="relative h-7 w-7 flex-shrink-0">
             <Image src="/redditHead.png" objectFit="contain" alt="" layout="fill" />
           </div>
-          <div className="text-xs">
+          <div className="text-xs flex-1">
           <p className="truncate">{session?.user?.name}</p>
           <p className="text-gray-400">1 Karma</p>
           </div>
+          <ChevronDownIcon className="h-5 flex-shrink-0 text-gray-400" />
         </div>) : (
           <div onClick={() => signIn()} className="hidden lg:flex items-center space-x-2 border border-gray-100 p-2 cursor-pointer">
             <div className="relative h-7 w-7 flex-shrink-0">
